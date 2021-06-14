@@ -1,0 +1,5 @@
+
+sudo dnf install ffmpeg-devel  # (from RPM Fusion, not Fedora)
+sudo dnf install python3-aiohttp
+pip3 install --user aiortc
+

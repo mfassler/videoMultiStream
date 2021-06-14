@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="/static/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/static/css/common.css" />
+  <title>Live Video</title>
+</head>
+
+
+<body>
+<h1>Live Video</h1>
+
+<div id="media">
+  <video id="stream1" autoplay="true" playsinline="true" muted="true" controls="true">
+    Your browser doesn't support video
+  </video>
+</div>
+
+</body>
+
+
+<script src="/static/js/webrtc_stuff.js"></script>
+
+<script>
+    start_webrtc();
+</script>
+
+</html>
+
+

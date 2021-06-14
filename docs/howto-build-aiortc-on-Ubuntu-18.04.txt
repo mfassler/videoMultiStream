@@ -1,0 +1,47 @@
+## Getting Python aiortc module to build on Ubuntu 18.04
+## -----------------------------------------------------
+
+apt install libffi-dev
+apt install libopus-dev
+apt install libvpx-dev
+
+
+# To build Python-AV:
+#apt install cython3  # ... too old
+pip3 install --user cython
+
+
+# The Python "av" module requires ffmpeg version 4,
+# so we have to add a repo with backports:
+add-apt-repository ppa:jonathonf/ffmpeg-4
+
+
+# Make sure there's no old 3.x ffmpeg stuff (only 4.x):
+dpkg -l |grep -i ffmp
+
+apt install ffmpeg
+
+# Make sure there's only 4.x stuff:
+dpkg -l |grep -i ffmp
+
+apt install libavformat-dev libavcodec-dev libavutil-dev libswresample-dev
+apt install libavdevice-dev libavfilter-dev libswscale-dev
+
+
+# Make sure there's only 4.x stuff:
+dpkg -l |grep -i ffmp
+
+pip3 install --user av
+
+apt install libsrtp2-dev
+
+## it seems we need libssl-dev, not libssl1.0-dev... hrmm
+apt install libssl-dev
+apt install rustc
+pip3 install --user setuptools-rust
+pip3 install --user cryptography
+
+
+pip3 install --user aiortc
+
+
