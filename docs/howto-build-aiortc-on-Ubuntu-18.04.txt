@@ -1,46 +1,55 @@
 ## Getting Python aiortc module to build on Ubuntu 18.04
 ## -----------------------------------------------------
 
-apt install libffi-dev
-apt install libopus-dev
-apt install libvpx-dev
 
-
-# To build Python-AV:
-#apt install cython3  # ... too old
-pip3 install --user cython
-
-
-# The Python "av" module requires ffmpeg version 4,
-# so we have to add a repo with backports:
-add-apt-repository ppa:jonathonf/ffmpeg-4
+## THE MAIN CHALLENGE with Ubuntu 18.04 is that it is using
+## ffmpeg 3.x.  We need ffmpeg version 4.
 
 
 # Make sure there's no old 3.x ffmpeg stuff (only 4.x):
 dpkg -l |grep -i ffmp
+
+# -- remove all the old 3.x stuff.  For example:
+apt purge ffmpeg
+apt purge libavcodec57 libavdevice57 libavfilter6 libavformat57 libavresample3 libavutil55 libpostproc54 libswresample2 libswscale4
+
+# (your system may be different...)
+
+## Then we will add a repo with back-ported ffmpeg-4:
+
+add-apt-repository ppa:jonathonf/ffmpeg-4
 
 apt install ffmpeg
 
 # Make sure there's only 4.x stuff:
 dpkg -l |grep -i ffmp
 
+
+
+## As root/sudo:
+
+apt install libffi-dev
+apt install libopus-dev
+apt install libvpx-dev
 apt install libavformat-dev libavcodec-dev libavutil-dev libswresample-dev
 apt install libavdevice-dev libavfilter-dev libswscale-dev
-
-
-# Make sure there's only 4.x stuff:
-dpkg -l |grep -i ffmp
-
-pip3 install --user av
-
 apt install libsrtp2-dev
 
-## it seems we need libssl-dev, not libssl1.0-dev... hrmm
-apt install libssl-dev
 apt install rustc
-pip3 install --user setuptools-rust
-pip3 install --user cryptography
 
+# it seems we need libssl-dev, not libssl1.0-dev... hrmm
+apt install libssl-dev
+
+
+### pip3 commands are run as a regular user:
+
+## To build Python-AV:
+#apt install cython3  # ... too old
+pip3 install --user cython
+pip3 install --user av  # takes a while
+
+pip3 install --user setuptools-rust
+pip3 install --user cryptography  # takes a while
 
 pip3 install --user aiortc
 
