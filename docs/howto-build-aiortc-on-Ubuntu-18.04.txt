@@ -36,10 +36,12 @@ apt install libavdevice-dev libavfilter-dev libswscale-dev
 apt install libsrtp2-dev
 
 apt install rustc
+apt install cargo
 
 # it seems we need libssl-dev, not libssl1.0-dev... hrmm
 apt install libssl-dev
 
+apt install python3-aiohttp
 
 ### pip3 commands are run as a regular user:
 
